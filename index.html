@@ -18,8 +18,47 @@
 
     </head>
     <body>
-        <main class="container">
-            <h1>Movies from 2014</h1>
+        <main class="container" ng-app="AngularDemo">
+            <section ng-controller='HelloController'>
+                <h1>Introduce Yoself</h1>
+                <p><input type="text" class="form-control"
+                        placeholder="enter your first name" ng-model="person.firstName"/></p>
+                <p><input type="text" class="form-control"
+                        placeholder="enter your last name" ng-model="person.lastName"/></p>
+
+                <p>Hello {{person.firstName}} {{person.lastName}}</p>
+
+            </section>
+
+            <!--must add controller so the td can populate itself-->
+            <section ng-controller="MoviesController">
+                <h1>Movies from 2014</h1>
+                <p>{{movies.length}} {{1 == movies.length ? 'movie' : 'movies'}}</p>
+<!--bootstrap style class table-->
+                <table class="table">
+                    <thead>
+                    <!--creates row-->
+                        <tr>
+                            <th>Title</th>
+                            <th>Sales</th>
+                            <th>Tickets</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <!--ng-repeat does the looping over array-->
+                        <tr ng-repeat="movie in movies">
+                            <td>{{movie.title}}</td>
+                            <!--currency filter-->
+                            <td>{{movie.grossSales  | currency : '$' : 0}}</td>
+                            <!--number filter-->
+                            <td>{{movie.ticketsSold | number}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </section>
+
 
         </main>
 
