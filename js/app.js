@@ -19,4 +19,20 @@ angular.module('AngularDemo', [])
     .controller('MoviesController', function($scope) {
         $scope.movies = movies;
         // create row in html for each movie using angular
+        // calling a function in ng-click, it wants us to call a function. Objects are hashmaps
+        // (hashtables, or key-value pairs) can be any type including a function
+        $scope.sortCol = 'rank';
+        $scope.sortBy = function(sortCol) {
+            // adds new property onto scope, pass whatever is passed to sortBy function
+            if ($scope.sortCol == sortCol) {
+                $scope.sortReverse = !$scope.sortReverse;
+            }
+            else {
+                $scope.sortCol = sortCol;
+                $scope.sortReverse = false;
+            }
+        };
+        $scope.isSortedBy = function(colName) {
+            return colName == $scope.sortCol;
+        }
     });
